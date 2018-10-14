@@ -41,16 +41,9 @@ public class MiddleElement {
 
     public ListNode middleNode(ListNode head) {
 
-        if(head==null){
+        if(head==null || head.next == null){
             return head;
         }
-
-        if(head.next == null){
-            return head;
-        }
-
-
-
         ListNode slow = head;
         ListNode fast = head;
 
@@ -58,8 +51,6 @@ public class MiddleElement {
             slow = slow.next;
             fast = fast.next.next;
         }
-
-
         return slow;
 
     }
