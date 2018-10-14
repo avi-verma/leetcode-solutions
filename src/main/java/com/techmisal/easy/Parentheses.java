@@ -1,99 +1,32 @@
-package com.techmisal.easy;
-
-
-/*
-
-Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
-
-An input string is valid if:
-
-Open brackets must be closed by the same type of brackets.
-Open brackets must be closed in the correct order.
-Note that an empty string is also considered valid.
-
-
-Example 1:
-
-Input: "()"
-Output: true
-Example 2:
-
-Input: "()[]{}"
-Output: true
-Example 3:
-
-Input: "(]"
-Output: false
-Example 4:
-
-Input: "([)]"
-Output: false
-Example 5:
-
-Input: "{[]}"
-Output: true
-
- */
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Stack;
 
-public class Parentheses {
+class Parentheses {
 
-
-
-    public boolean getValidParanthenses(String str){
-
-        Stack<String> stack = new Stack<>();
-
-
-        int pushCount = 0, popCount=0;
-
-        if(str.isEmpty()){
-            return true;
-        }
-
-
-        for(int i=0;i<str.length();i++) {
-
-            if(str.charAt(i)=='('){
-                stack.push(")");
-                pushCount++;
-            }else if(str.charAt(i) == '['){
-                stack.push("]");
-                pushCount++;
-            }else if(str.charAt(i) == '{'){
-                stack.push("}");
-                pushCount++;
-            }
-
-
-            if(str.charAt(i) == ')' || str.charAt(i) == '}' || str.charAt(i)==']'){
-                if(!stack.empty()){
-                    if(!stack.pop().equals(""+str.charAt(i))){
-                        return false;
-                    }
-
-                    popCount++;
-
-                }else{
-                    return false;
-                }
-            }
-
-
-        }
-
-
-        if(!stack.empty()){
-            return false;
-        }
-
-
-        if(pushCount== 0 && popCount == 0){
-            return false;
-        }
-
-        return true;
+    public static void main(String[] args) throws IOException {
+    BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+    String string=reader.readLine();
+    HashMap<Character , Character> map=new HashMap<>();
+    map.put(')', '(');
+    map.put('}', '{');
+    map.put(']', '[');
+    Stack stack=new Stack();
+    for(int i=0;i<string.length();i++){
+      
+    if(!stack.isEmpty() && stack.peek().equals(map.get(string.charAt(i))) ){
+        stack.pop();
+        
+    }
+    else 
+        stack.add(string.charAt(i));
+    
+    }
+  
+        System.out.println(stack.isEmpty()?true:false);
+        
 
     }
 
