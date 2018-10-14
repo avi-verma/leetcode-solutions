@@ -28,22 +28,16 @@ public class LowerCase {
 
     public String toLowerCase(String str) {
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(str);
 
-        char c = ' ';
-        for (int i = 0; i < str.length(); i++) {
-            int j = (str.charAt(i) - 'A');
-            if (j > -1 && j < 27) {
-                c = (char) (j + 97);
-            } else {
-                c = str.charAt(i);
-            }
-            sb.append("" + c);
-        }
-
+       for(int i=0;i<sb.length();i++){
+           if(sb.charAt(i)>=65&&sb.charAt(i)<=90){
+               sb.replace(i, i+1,new Character((char) (sb.charAt(i)+32)).toString());
+           }
+       
+       }
 
         return sb.toString();
-
     }
 
 }
