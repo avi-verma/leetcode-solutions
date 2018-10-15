@@ -26,7 +26,7 @@ class Parentheses {
     }
   
         System.out.println(stack.isEmpty()?true:false);
-        
+      
 
     }
 
